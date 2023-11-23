@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/main.css">
+    <title>Book Notes</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h1> Books I've Read </h1>
+            <a href="/new"><button class="btn-new">Add New</button></a>
+        
+            <% if(books){ %>
+                <% books.forEach(book => { %>
+                    <div class="book-card">
+                        <img src="<%= book.image %>">
+                        <div class="book-details">
+                            <h2>Title: <%= book.name %></h2>
+                            <p>Description: <%= book.description %></p>
+                        </div>
+                        
+                    </div>
+                    <div class="links">
+                        <a href="/edit/<%= book.name %>"><button class="btn-edit">Edit</button></a>
+                        <form action="/delete/<%= book.name %>" method="POST">
+                        <button type="submit" class="btn-delete" value="<%= book.name %>">Delete</button>
+                        </form>
+                    </div>
+                    
+                <% }) %>
+            <% } %>
+        </div>
+        <footer>
+            Copyright © <%= new Date().getFullYear() %>
+        </footer>
+    </main>
+    
+</body>
+</html>
